@@ -1,0 +1,161 @@
+#main-contain {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    background-image: url(https://wallpapercave.com/wp/wp2808001.jpg);
+    background-color: black;
+    
+}
+
+.window {
+    margin: 32px;
+    position: absolute;
+}
+
+#begun {
+    width: 250px;
+    top: 40px;
+    left: -10px;
+}
+
+#soon {
+    position: absolute;
+    width: 250px;
+    top: 140px;
+    left: 70px;
+}
+
+#titles {
+    position: absolute;
+    top: 50px;
+    width: 300px;
+    left: 350px;
+    font-size: 1.5em;
+    padding: 20px 20px -20px 20px;
+
+    .window-body {
+        padding-bottom: 0px;
+    }
+}
+
+#pp {
+    font-style: italic;
+    padding: 8px;
+    font-size: .8em;
+}
+
+.Reflector > div {
+    color: white;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    top: 350px;
+    left: -5px;
+    background: none;
+    border: none;
+    font-weight: bold;
+    font-size: 5em;
+    letter-spacing: 25px;
+    height: 65px;
+    text-align: center;
+    padding-left: 25px;
+    padding-top: 5px;
+    background: linear-gradient(90deg,rgba(255, 0, 0, 1) 0%, rgba(255, 255, 0, 1) 17%, rgba(0, 255, 0, 1) 34%, rgba(0, 255, 255, 1) 50%, rgba(0, 0, 255, 1) 69%, rgba(255, 0, 255, 1) 83%, rgba(255, 0, 0, 1) 100%);
+}
+
+.Reflector > .r2 {
+        border: none;
+transform: translate(30px, 62px) skew(50deg) scale(1, -.7);
+  -webkit-mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, .4) 90%, rgba(0, 0, 0, .8) 100%);
+}
+
+#addr {
+    top: 45px;
+    left: 425px;
+}
+
+#addr:before {
+    border: 11px solid transparent;
+    border-top-color: black;
+    margin-left: -11px;
+    margin-bottom: -11px;
+}
+
+#addr:after {
+    border: 10px solid transparent;
+    border-top-color: #fff08f;
+    margin-left: -10px;
+    margin-bottom: -10px;
+}
+
+#addr:before, #addr:after {
+	left: 80%;
+    bottom: 0;
+    border-bottom: 0;
+}
+
+#date {
+    top: 305px;
+    left: 415px;
+}
+
+#date:before {
+	border: 11px solid transparent;
+	border-bottom-color: black;
+	margin-left: -11px;
+	margin-top: -11px;
+}
+
+#date:before, #date:after {
+	left: 20%;
+	top: 0;
+    border-top: 0;
+}
+
+.speech-bubble {
+	position: absolute;
+    width: 250px;
+    height: 50px;
+	background: #fff08f;
+	border-radius: .4em;
+    border: 1px solid black;
+    font-family: "Pixelated MS Sans Serif";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.4em;
+}
+
+.speech-bubble:after, .speech-bubble:before {
+	content: '';
+	position: absolute;
+	width: 0;
+	height: 0;
+}
+
+.speech-bubble:after {
+	border: 10px solid transparent;
+	border-bottom-color: #fff08f;
+	margin-left: -10px;
+	margin-top: -10px;
+}
+
+.window-body {
+    font-size: 1.7em;
+    text-align: center;
+    padding-bottom: 10px;
+
+}
+
+.title-bar {
+    font-size: 1.2em;
+}
+
+button {
+    font-size: .75em;
+    padding: 5px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
