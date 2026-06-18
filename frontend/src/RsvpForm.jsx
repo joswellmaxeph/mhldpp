@@ -3,16 +3,15 @@ import Wizard from "./Wizard";
 
 const questions = [
   { name: "name", text: "What is your name?", type: "text" },
+  { name: "plusGuests", text: "Are you bringing anyone else?", type: "textarea" },
   { name: "email", text: "What is your email?", type: "email" },
   { name: "attending", text: "Will you be attending?", type: "select", options: ["Yes", "No", "Maybe", "I don't know", "Can you repeat the question?"] },
-  { name: "plusGuests", text: "How many plus guests?", type: "text" },
-  { name: "bringingForPotluck", text: "What will you be bringing for the potluck?", type: "text" },
-  { name: "notes", text: "Any additional notes?", type: "text" },
+  { name: "bringingForPotluck", text: "Will you bring a potluck item?", type: "textarea" },
+  { name: "notes", text: "Anything else you'd like to share?", type: "textarea" },
 ];
 
 function RsvpForm() {
   const handleSubmit = async (answers) => {
-    console.log(answers);
     try {
       const res = await fetch(`http://localhost:5000/rsvp`, {
         method: "POST",
@@ -30,7 +29,6 @@ function RsvpForm() {
 
   return (
     <div className="rsvp-form">
-      <h2>RSVP</h2>
       <Wizard title="RSVP" questions={questions} onSubmit={handleSubmit} />
     </div>
   );

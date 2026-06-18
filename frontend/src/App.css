@@ -159,3 +159,47 @@ body {
   margin: 0;
   padding: 0;
 }
+
+.rsvp-form {
+    display: flex;
+    justify-content: center;
+}
+
+.window-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.wizard.window {
+    margin-top: 25px;
+    width: 400px;
+    max-width: 95%;
+}
+
+.wizard input {
+    font-size: .8em;
+    width: 200px;
+}
+
+select {
+    font-size: .8em;
+    width: 210px;
+}
+
+.button-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 50px;
+}
+
+textarea {
+    font-size: .8em;
+    width: 210px;
+    height: 50px;
+}
+
+.generic-input {
+    height: 50px;
+}
