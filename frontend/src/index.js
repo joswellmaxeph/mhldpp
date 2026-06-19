@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import RsvpForm from './RsvpForm';
+import RsvpList from './RsvpList';
 import WelcomeScreen from './WelcomeScreen';
 import {
   createBrowserRouter,
@@ -14,6 +15,7 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route path="/rsvp" element={<RsvpForm />} />
+      <Route path="/rsvps" element={<RsvpList />} />
       <Route path="/" element={<WelcomeScreen />} />
     </Route>
   )

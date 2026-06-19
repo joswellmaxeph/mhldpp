@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import GenericInput from "./GenericInput";
 
 const qMessages = [
@@ -122,6 +122,22 @@ function Wizard({ title, questions, onSubmit }) {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [currentAnswer, setCurrentAnswer] = useState("");
   const [answers, setAnswers] = useState({});
+
+  const keyDownHandler = (e) => {
+    if (e.key === "Enter" && currentAnswer !== "") {
+      e.preventDefault();
+      next();
+    }
+  }
+
+  useEffect(() => {
+    document.addEventListener("keydown", keyDownHandler, false);
+    
+    return () => {
+      document.removeEventListener("keydown", keyDownHandler, false);
+    }
+  }, [currentAnswer, currentQuestionIndex]);
+
   const helpClick = () => {
     setQMessageIdx((qMessageIdx + 1) % qMessages.length);
   };
@@ -133,12 +149,34 @@ function Wizard({ title, questions, onSubmit }) {
       setCurrentAnswer("");
       return;
     }
+
     if (currentQuestionIndex < questions.length - 1) {
       const newAnswers = { ...answers };
       const newName = questions[currentQuestionIndex].name;
       newAnswers[newName] = currentAnswer;
       setAnswers(newAnswers);
-      setCurrentAnswer(newAnswers[questions[currentQuestionIndex + 1]?.name] || "");
+
+      let nextQuestionIdx = currentQuestionIndex + 1;
+      let nextQuestion = questions[nextQuestionIdx];
+      setCurrentAnswer(newAnswers[nextQuestion?.name] || "");
+      
+      let findingNext = true;
+      while (findingNext) {
+        
+      }
+      if (nextQuestion.cond) {
+        for (const key in nextQuestion.cond) {
+          if (!nextQuestion.cond[key].includes(newAnswers[key])) {
+            skip = true;
+          }
+        }
+
+        if (skip) {
+          setCurrentQuestionIndex(currentQuestionIndex + 1);
+          return;
+        }
+      }
+
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     } else {
       const newAnswers = { ...answers };
@@ -155,7 +193,6 @@ function Wizard({ title, questions, onSubmit }) {
       setCurrentQuestionIndex(currentQuestionIndex - 1);
       setCurrentAnswer(answers[questions[currentQuestionIndex - 1].name] || "");
     }
-
   };
 
   const lastQuestion = currentQuestionIndex === questions.length - 1;

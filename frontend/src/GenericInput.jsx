@@ -1,12 +1,12 @@
 function GenericInput({ type, value, onChange, options }) {
   function getInput() {
     if (type === "text") {
-      return <input type="text" value={value} onChange={onChange} />;
+      return <input autoFocus type="text" value={value} onChange={onChange} />;
     } else if (type === "email") {
-      return <input type="email" value={value} onChange={onChange} />;
+      return <input autoFocus type="email" value={value} onChange={onChange} />;
     } else if (type === "select") {
       return (
-        <select value={value} onChange={onChange}>
+        <select autoFocus value={value} onChange={onChange}>
           <option value="">Select an option</option>
           {options && options.map((option) => (
             <option key={option} value={option}>
@@ -16,7 +16,7 @@ function GenericInput({ type, value, onChange, options }) {
         </select>
       );
     } else if (type === "textarea") {
-      return <textarea value={value} onChange={onChange} />;
+      return <textarea autoFocus value={value} onChange={onChange} />;
     }
   }
 

@@ -2,17 +2,26 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 
-const rsvpModel = require('./rsvpModel');
-
 require('dotenv').config();
 const app = express();
-const PORT = 5000
+const PORT = 5001;
+
+const frontEndUrl = process.env.FRONTEND_URL;
+
+const corsOptions = {
+  origin: frontEndUrl,
+  optionsSuccessStatus: 200,
+  credentials: true
+};
+
+app.use(cors(corsOptions));
+
+const rsvpModel = require('./rsvpModel');
+
 // Middleware
-app.use(cors());
 app.use(express.json());
 // MongoDB Connection
 const dbUrl = process.env.MONGO_URI;
-console.log(dbUrl);
 mongoose.connect(process.env.MONGO_URI, { dbName: "mhld26" })
  .then(() => console.log('MongoDB connected'))
  .catch(err => console.log(err));
