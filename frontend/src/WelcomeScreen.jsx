@@ -3,14 +3,31 @@ import { format } from "date-fns";
 import Reflector from "./Reflector";
 import OkWindow from "./OkWindow";
 
-import { useState } from "react";
+import { useState, useEffect, useParams } from "react";
 
 function WelcomeScreen() {
   const [soonShowing, setSoonShowing] = useState(false);
   const [begunShowing, setBegunShowing] = useState(true);
+  const [mainShowing, setMainShowing] = useState(false);
+  const [addrShowing, setAddrShowing] = useState(false);
+  const [dateShowing, setDateShowing] = useState(false);
+  const [setReflectorShowing] = useState(false);
+
+  const beenThrough = localStorage.getItem("beenThrough") === "true";
+  useEffect(() => {
+    if (beenThrough) {
+      setBegunShowing(false);
+      setSoonShowing(false);
+      setMainShowing(true);
+    } else {
+      setBegunShowing(true);
+      setSoonShowing(false);
+      setMainShowing(false);
+    }
+  }, [beenThrough])
 
   return (
-    <>
+    <div className="welcome-container">
       <OkWindow
         showing={begunShowing}
         text="Summer has begun..."
@@ -26,27 +43,28 @@ function WelcomeScreen() {
         text="Soon it will end..."
         quote="all things end..."
         id="soon"
-        onClose={() => setSoonShowing(false)}
+        onClose={() => {setSoonShowing(false); localStorage.setItem("previouslyVisited", "true");setMainShowing(true);}}
       />
 
-      <div class="window" id="titles">
-        <div class="window-body">
-          <p id="mh">MAXWELL HOUSE</p>
-          <div class="field-border" id="pp">
+      <div className={`window ${mainShowing ? "showing" : ""}`} id="titles">
+        <div className="window-body">
+          <p id="mh" onClick={() => {setAddrShowing(!addrShowing);}}>MAXWELL HOUSE</p>
+          <div className="field-border" id="pp">
             PARTY & POTLUCK
           </div>
-          <p id="ld">LABOR DAY 2026</p>
+          <p id="ld" onClick={() => {setDateShowing(!dateShowing);}}>LABOR DAY 2026</p>
         </div>
       </div>
 
-      <div class="speech-bubble" id="addr">
+      <div className={`speech-bubble ${addrShowing ? "showing" : ""}`} id="addr">
         2030 Halstead Ave, Lakewood
       </div>
-      <div class="speech-bubble" id="date">
+      <div className={`speech-bubble ${dateShowing ? "showing" : ""}`} id="date">
         Monday, September 7th @ 3pm
       </div>
-      <Reflector text="REFLECTION" />
-    </>
+
+      <Reflector showing={setReflectorShowing} text="REFLECTION" />
+    </div>
   );
 }
 

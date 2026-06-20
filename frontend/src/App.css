@@ -1,16 +1,26 @@
+html {
+    
+    background-image: url(https://wallpapercave.com/wp/wp2808001.jpg);
+}
+
 #main-contain {
     margin: 0;
     padding: 0;
     height: 100%;
     width: 100%;
-    background-image: url(https://wallpapercave.com/wp/wp2808001.jpg);
-    background-color: black;
     
+}
+
+.welcome-container {
+    background: black;
+    width: 200px;
+    height: 100%;
+    margin: 0 auto;
 }
 
 .window {
     margin: 32px;
-    position: absolute;
+    /* position: absolute; */
 }
 
 #begun {
@@ -20,14 +30,14 @@
 }
 
 #soon {
-    position: absolute;
+    /* position: absolute; */
     width: 250px;
     top: 140px;
     left: 70px;
 }
 
 #titles {
-    position: absolute;
+    /* position: absolute; */
     top: 50px;
     width: 300px;
     left: 350px;
@@ -48,14 +58,14 @@
 .Reflector > div {
     color: white;
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-    top: 350px;
+    top: 400px;
     left: -5px;
     background: none;
     border: none;
     font-weight: bold;
-    font-size: 5em;
-    letter-spacing: 25px;
-    height: 65px;
+    font-size: 2em;
+    letter-spacing: 15px;
+    height: 30px;
     text-align: center;
     padding-left: 25px;
     padding-top: 5px;
@@ -64,13 +74,20 @@
 
 .Reflector > .r2 {
         border: none;
-transform: translate(30px, 62px) skew(50deg) scale(1, -.7);
+transform: translate(15px, 32px) skew(50deg) scale(1, -.7);
   -webkit-mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, .4) 90%, rgba(0, 0, 0, .8) 100%);
 }
 
 #addr {
     top: 45px;
-    left: 425px;
+    left: 75px;
+    z-index: 11;
+    opacity: 0;
+    transition: opacity 300ms ease-in-out;
+}
+
+#addr.showing {
+    opacity: 1;
 }
 
 #addr:before {
@@ -94,8 +111,15 @@ transform: translate(30px, 62px) skew(50deg) scale(1, -.7);
 }
 
 #date {
-    top: 305px;
-    left: 415px;
+    top: 315px;
+    left: 65px;
+    z-index: 11;
+    opacity: 0;
+}
+
+#date.showing {
+    opacity: 1;
+    transition: opacity 300ms ease-in-out;
 }
 
 #date:before {
@@ -112,7 +136,7 @@ transform: translate(30px, 62px) skew(50deg) scale(1, -.7);
 }
 
 .speech-bubble {
-	position: absolute;
+	/* position: absolute; */
     width: 250px;
     height: 50px;
 	background: #fff08f;
@@ -127,7 +151,7 @@ transform: translate(30px, 62px) skew(50deg) scale(1, -.7);
 
 .speech-bubble:after, .speech-bubble:before {
 	content: '';
-	position: absolute;
+	/* position: absolute; */
 	width: 0;
 	height: 0;
 }
@@ -158,11 +182,14 @@ button {
 body {
   margin: 0;
   padding: 0;
+  font-family: "Pixelated MS Sans Serif", sans-serif;
 }
 
-.rsvp-form {
+.rsvp-form, .rsvp-list-container {
     display: flex;
     justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
 .window-body {
@@ -171,10 +198,25 @@ body {
     align-items: center;
 }
 
-.wizard.window {
+.wizard.window, .window.rsvp-list, .rsvp-form .window {
     margin-top: 25px;
     width: 400px;
     max-width: 95%;
+    text-align: center;
+    position: initial;
+    min-height: 50vh;
+
+    h2 {
+        font-size: 2.5em;
+    }
+}
+
+.submission-response {
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
 }
 
 .wizard input {
@@ -202,4 +244,69 @@ textarea {
 
 .generic-input {
     height: 50px;
+}
+
+table {
+    width: 100%;
+}
+
+tbody {
+    display: block;
+    max-height: 50vh;
+    overflow-y: auto;
+}
+
+thead, tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+tr, td {
+    height: 25px;
+    border-bottom: 1px dotted gray;
+}
+
+.rsvp-list h2 {
+    margin-bottom: 0;
+}
+
+.rsvp-list a {
+    font-size: 1.2em;
+    font-style: italic;
+}
+
+.rsvp-list table {
+    margin-top: 20px;
+}
+
+#titles {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+#titles.showing {
+    opacity: 1;
+    z-index: 10;
+}
+
+.window {
+    pointer-events: all;
+}
+
+#begun {
+    z-index: 5;
+}
+
+#soon {
+    z-index: 4;
+}
+
+#titles {
+    left: 0;
+    z-index: 2;
+}
+
+#mh, #ld {
+    text-decoration: underline dotted;
 }

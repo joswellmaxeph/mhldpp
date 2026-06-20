@@ -8,7 +8,7 @@ const rsvpSchema = new mongoose.Schema(
     },
     email: {
       type: String,
-      required: true
+      required: false
     },
     attending: {
       type: String,
@@ -26,6 +26,9 @@ const rsvpSchema = new mongoose.Schema(
       type: String,
       required: false
     }
+  },
+  {
+    timestamps: true
   }
 );
 

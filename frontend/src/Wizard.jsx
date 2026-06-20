@@ -121,7 +121,12 @@ function Wizard({ title, questions, onSubmit }) {
   const [qMessageIdx, setQMessageIdx] = useState(0);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [currentAnswer, setCurrentAnswer] = useState("");
-  const [answers, setAnswers] = useState({});
+
+  const startingAnswers = {};
+  questions.forEach((q) => {
+    startingAnswers[q.name] = "";
+  });
+  const [answers, setAnswers] = useState(startingAnswers);
 
   const keyDownHandler = (e) => {
     if (e.key === "Enter" && currentAnswer !== "") {
@@ -162,22 +167,25 @@ function Wizard({ title, questions, onSubmit }) {
       
       let findingNext = true;
       while (findingNext) {
-        
-      }
-      if (nextQuestion.cond) {
-        for (const key in nextQuestion.cond) {
-          if (!nextQuestion.cond[key].includes(newAnswers[key])) {
-            skip = true;
+        let skip = false;
+        if (nextQuestion.cond) {
+          for (const key in nextQuestion.cond) {
+            if (!nextQuestion.cond[key].includes(newAnswers[key])) {
+              skip = true;
+            }
           }
         }
 
         if (skip) {
-          setCurrentQuestionIndex(currentQuestionIndex + 1);
-          return;
+          nextQuestionIdx++;
+          nextQuestion = questions[nextQuestionIdx];
+          setCurrentAnswer(newAnswers[nextQuestion?.name] || "");
+        } else {
+          findingNext = false;
         }
       }
-
-      setCurrentQuestionIndex(currentQuestionIndex + 1);
+      
+      setCurrentQuestionIndex(nextQuestionIdx);
     } else {
       const newAnswers = { ...answers };
       const newName = questions[currentQuestionIndex].name;

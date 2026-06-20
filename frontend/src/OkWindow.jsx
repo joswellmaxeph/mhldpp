@@ -7,15 +7,15 @@ function OkWindow({ text, id, onClose, quote, showing }) {
   }
 
   return (
-    <div class="window" id={id} style={{ opacity: showing ? 1 : 0, transition: "opacity 0.5s" }}>
-      <div class="title-bar">
-        <div class="title-bar-text">{pageTitle}</div>
-        <div class="title-bar-controls">
+    <div className="window" id={id} style={{ opacity: showing ? 1 : 0, transition: "opacity 0.5s" }}>
+      <div className="title-bar">
+        <div className="title-bar-text">{pageTitle}</div>
+        <div className="title-bar-controls">
           <button aria-label="Help" onClick={helpClick}></button>
           <button aria-label="Close" onClick={onClose}></button>
         </div>
       </div>
-      <div class="window-body">
+      <div className="window-body">
         <p>{text}</p>
         <button onClick={onClose}>OK</button>
       </div>
