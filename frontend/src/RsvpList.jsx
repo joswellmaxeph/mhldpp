@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Linky from "./Linky";
+import Loader from "./Loader";
 
 const attendingOptions = ["", " (Yes)", " (No)", " (Maybe)"];
 const nameAlphaSortOptions = ["Ascending", "Descending"];
@@ -22,6 +23,7 @@ function RsvpList() {
   const [nameAlphaSortIdx, setNameAlphaSortIdx] = useState(0);
   const [potluckSortIdx, setPotluckSortIdx] = useState(0);
   const [filterAttendingIdx, setFilterAttendingIdx] = useState(0);
+  const [rsvpsLoading, setRsvpsLoading] = useState(true);
 
   useEffect(() => {
     const fetchRsvps = async () => {
@@ -30,8 +32,10 @@ function RsvpList() {
         const data = await res.json();
         data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
         setRsvps(data);
+        setRsvpsLoading(false);
       } catch (error) {
         console.error("Error fetching RSVPs:", error);
+        setRsvpsLoading(false);
       }
     };
 
@@ -72,6 +76,7 @@ function RsvpList() {
     <div className="window rsvp-list">
       <h2>RSVP List</h2>
       <Linky to="/rsvp" text="Click here to submit yours!" />
+      <Loader loading={rsvpsLoading} />
       {rsvps.length > 0 && (
         <table className="interactive">
             <thead>

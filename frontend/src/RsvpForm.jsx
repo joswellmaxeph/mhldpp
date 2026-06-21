@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Wizard from "./Wizard";
 import Linky from "./Linky";
+import Loader from "./Loader";
 
 const questions = [
   { name: "name", text: "What is your name?", type: "text" },
@@ -14,8 +15,11 @@ const questions = [
 
 function RsvpForm() {
   const [submissionResponseData, setSubmissionResponseData] = useState(null);
+  const [loading, setLoading] = useState(false);
+  
   const handleSubmit = async (answers) => {
     try {
+      setLoading(true);
       const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/rsvp`, {
         method: "POST",
         headers: {
@@ -25,8 +29,10 @@ function RsvpForm() {
       });
       const responseData = await res.json();
       setSubmissionResponseData(responseData);
+      setLoading(false);
     } catch (error) {
       console.error("Error submitting RSVP:", error);
+      setLoading(false);
     }
   };
 
@@ -44,6 +50,7 @@ function RsvpForm() {
   return (
     <>
     <div className="rsvp-form">
+      <Loader loading={loading} />
       <Wizard title="RSVP" questions={questions} onSubmit={handleSubmit} />
       <Linky to="/rsvps" text="View all the RSVPs here" />
     </div>
