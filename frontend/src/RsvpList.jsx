@@ -77,7 +77,7 @@ function RsvpList() {
       <h2>RSVP List</h2>
       <Linky to="/rsvp" text="Click here to submit yours!" />
       <Loader loading={rsvpsLoading} />
-      {rsvps.length > 0 && (
+      {rsvps.length > 0 ? (
         <table className="interactive">
             <thead>
                 <tr>
@@ -99,6 +99,8 @@ function RsvpList() {
                 ))}
             </tbody>
         </table>
+      ) : (
+        <p>No one has RSVP'd :(</p>
       )}
     </div>
     </div>

@@ -32,6 +32,7 @@ function RsvpForm() {
       setLoading(false);
     } catch (error) {
       console.error("Error submitting RSVP:", error);
+      setSubmissionResponseData({ failure: true });
       setLoading(false);
     }
   };
@@ -40,7 +41,11 @@ function RsvpForm() {
     return (
       <div className="rsvp-form">
       <div className="window submission-response">
-        <h2>Thank you for your response, {submissionResponseData.name}!</h2>
+        {submissionResponseData.failure ? (
+          <h2>There was an error submitting your RSVP. Please try again.</h2>
+        ) : (
+          <h2>Thank you for your response, {submissionResponseData.name}!</h2>
+        )}
         <Linky to="/rsvps" text="View all the RSVPs here" />
       </div>
       </div>
@@ -51,7 +56,7 @@ function RsvpForm() {
     <>
     <div className="rsvp-form">
       <Loader loading={loading} />
-      <Wizard title="RSVP" questions={questions} onSubmit={handleSubmit} />
+      {!loading && <Wizard title="RSVP" questions={questions} onSubmit={handleSubmit} />}
       <Linky to="/rsvps" text="View all the RSVPs here" />
     </div>
     </>

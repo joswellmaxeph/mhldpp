@@ -79,7 +79,7 @@ function Loader({ loading }) {
     return <></>;
   }
 
-  return (<div className="loader">{loadingText}</div>)
+  return (<div className="loader window">{loadingText}</div>)
 };
 
 export default Loader;

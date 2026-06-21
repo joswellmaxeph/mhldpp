@@ -5,7 +5,17 @@ import "./App.css";
 import sky from "./sky2.mp4";
 
 function App() {
-  fetch(`${process.env.REACT_APP_BACKEND_URL}/api/`);
+  const preFetch = async () => {
+    try {
+        await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/`);
+        console.log("you did it");
+    } catch {
+        console.error("Pre-fetch failed, but that's ok!");
+    }
+  }
+
+  preFetch();
+  
   return (
     <div className="App">
       <div id="bg">
