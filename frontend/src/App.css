@@ -94,6 +94,7 @@ transform: translate(15px, 32px) skew(50deg) scale(1, -.7);
     width: 90%;
     opacity: 0;
     transition: opacity 1s ease-in-out;
+    user-select: none;
 }
 
 .showing .refl {
@@ -335,6 +336,7 @@ tr, td {
 #mh, #ld {
     text-decoration: underline dotted;
     cursor: help;
+    user-select: none;
 }
 
 .footer {
@@ -356,4 +358,5 @@ tr, td {
     color: blue;
     text-decoration: underline;
     cursor: pointer;
+    user-select: none;
 }
