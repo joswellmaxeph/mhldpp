@@ -4,6 +4,7 @@ import App from './App';
 import RsvpForm from './RsvpForm';
 import RsvpList from './RsvpList';
 import WelcomeScreen from './WelcomeScreen';
+import InfoPage from './InfoPage';
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -16,6 +17,7 @@ const router = createBrowserRouter(
     <Route path="/" element={<App />}>
       <Route path="/rsvp" element={<RsvpForm />} />
       <Route path="/rsvps" element={<RsvpList />} />
+      <Route path="/info" element={<InfoPage />} />
       <Route path="/" element={<WelcomeScreen />} />
     </Route>
   )

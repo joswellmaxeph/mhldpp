@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Wizard from "./Wizard";
+import Linky from "./Linky";
 
 const questions = [
   { name: "name", text: "What is your name?", type: "text" },
@@ -34,7 +35,7 @@ function RsvpForm() {
       <div className="rsvp-form">
       <div className="window submission-response">
         <h2>Thank you for your response, {submissionResponseData.name}!</h2>
-        <a href="/rsvps">View all the RSVPs here</a>
+        <Linky to="/rsvps" text="View all the RSVPs here" />
       </div>
       </div>
     );
@@ -44,7 +45,7 @@ function RsvpForm() {
     <>
     <div className="rsvp-form">
       <Wizard title="RSVP" questions={questions} onSubmit={handleSubmit} />
-      <a href="/rsvps">View all the RSVPs here</a>
+      <Linky to="/rsvps" text="View all the RSVPs here" />
     </div>
     </>
   );

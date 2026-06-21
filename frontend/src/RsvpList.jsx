@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Linky from "./Linky";
 
 const attendingOptions = ["", " (Yes)", " (No)", " (Maybe)"];
 const nameAlphaSortOptions = ["Ascending", "Descending"];
@@ -70,7 +71,7 @@ function RsvpList() {
     <div className="rsvp-list-container">
     <div className="window rsvp-list">
       <h2>RSVP List</h2>
-      <a href="/rsvp">Click here to submit yours!</a>
+      <Linky to="/rsvp" text="Click here to submit yours!" />
       {rsvps.length > 0 && (
         <table className="interactive">
             <thead>

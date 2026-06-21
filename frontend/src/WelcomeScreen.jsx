@@ -3,7 +3,8 @@ import { format } from "date-fns";
 import Reflector from "./Reflector";
 import OkWindow from "./OkWindow";
 
-import { useState, useEffect, useParams } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 
 function WelcomeScreen() {
   const [soonShowing, setSoonShowing] = useState(false);
@@ -11,24 +12,23 @@ function WelcomeScreen() {
   const [mainShowing, setMainShowing] = useState(false);
   const [addrShowing, setAddrShowing] = useState(false);
   const [dateShowing, setDateShowing] = useState(false);
-  const [setReflectorShowing] = useState(false);
+  const [reflectorShowing, setReflectorShowing] = useState(false);
+  const [searchParams] = useSearchParams();
 
-  const beenThrough = localStorage.getItem("beenThrough") === "true";
+  const skip = searchParams.get("skip");
+
   useEffect(() => {
-    if (beenThrough) {
+    if (skip) {
       setBegunShowing(false);
       setSoonShowing(false);
       setMainShowing(true);
-    } else {
-      setBegunShowing(true);
-      setSoonShowing(false);
-      setMainShowing(false);
+      setReflectorShowing(true);
     }
-  }, [beenThrough])
+  }, [skip]);
 
   return (
     <div className="welcome-container">
-      <OkWindow
+      {!skip && <OkWindow
         showing={begunShowing}
         text="Summer has begun..."
         quote={`it is ${format(new Date(), "EEEE, MMMM do")}`}
@@ -37,14 +37,14 @@ function WelcomeScreen() {
           setBegunShowing(false);
           setSoonShowing(true);
         }}
-      />
-      <OkWindow
+      />}
+      {!skip &&<OkWindow
         showing={soonShowing}
         text="Soon it will end..."
         quote="all things end..."
         id="soon"
-        onClose={() => {setSoonShowing(false); localStorage.setItem("previouslyVisited", "true");setMainShowing(true);}}
-      />
+        onClose={() => {setSoonShowing(false); localStorage.setItem("previouslyVisited", "true");setMainShowing(true);setTimeout(() => setReflectorShowing(true), 2000);}}
+      />}
 
       <div className={`window ${mainShowing ? "showing" : ""}`} id="titles">
         <div className="window-body">
@@ -63,7 +63,7 @@ function WelcomeScreen() {
         Monday, September 7th @ 3pm
       </div>
 
-      <Reflector showing={setReflectorShowing} text="REFLECTION" />
+      <Reflector showing={reflectorShowing} text="REFLECTION" />
     </div>
   );
 }

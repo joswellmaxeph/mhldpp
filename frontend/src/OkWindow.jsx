@@ -7,7 +7,7 @@ function OkWindow({ text, id, onClose, quote, showing }) {
   }
 
   return (
-    <div className="window" id={id} style={{ opacity: showing ? 1 : 0, transition: "opacity 0.5s" }}>
+    <div className="window" id={id} style={{ opacity: showing ? 1 : 0, transition: "opacity 1s ease-in-out" }}>
       <div className="title-bar">
         <div className="title-bar-text">{pageTitle}</div>
         <div className="title-bar-controls">
