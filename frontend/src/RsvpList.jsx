@@ -26,7 +26,7 @@ function RsvpList() {
   useEffect(() => {
     const fetchRsvps = async () => {
       try {
-        const res = await fetch(`http://localhost:5001/rsvp`);
+        const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/rsvp`);
         const data = await res.json();
         data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
         setRsvps(data);

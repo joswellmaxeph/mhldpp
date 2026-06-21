@@ -4,7 +4,7 @@ const cors = require('cors');
 
 require('dotenv').config();
 const app = express();
-const PORT = 5001;
+const PORT = process.env.PORT || 5001;
 
 const frontEndUrl = process.env.FRONTEND_URL;
 
@@ -22,15 +22,15 @@ const rsvpModel = require('./rsvpModel');
 app.use(express.json());
 // MongoDB Connection
 const dbUrl = process.env.MONGO_URI;
-mongoose.connect(process.env.MONGO_URI, { dbName: "mhld26" })
+mongoose.connect(dbUrl, { dbName: "mhld26" })
  .then(() => console.log('MongoDB connected'))
  .catch(err => console.log(err));
 // Basic Route
-app.get('/', (req, res) => {
+app.get('/api', (req, res) => {
  res.send('Hello from the backend!');
 });
 
-app.get('/rsvp', async (req, res) => {
+app.get('/api/rsvp', async (req, res) => {
   try {
     const rsvps = await rsvpModel.find({});
     res.json(rsvps);
@@ -39,7 +39,7 @@ app.get('/rsvp', async (req, res) => {
   }
 });
 
-app.post('/rsvp', (req, res) => {
+app.post('/api/rsvp', (req, res) => {
   try {
     const newRsvp = new rsvpModel(req.body);
     newRsvp.save();

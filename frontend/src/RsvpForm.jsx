@@ -16,7 +16,7 @@ function RsvpForm() {
   const [submissionResponseData, setSubmissionResponseData] = useState(null);
   const handleSubmit = async (answers) => {
     try {
-      const res = await fetch(`http://localhost:5001/rsvp`, {
+      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/rsvp`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
