@@ -71,6 +71,13 @@ function InfoPage() {
             <li>probably just show up either way</li>
           </details>
         </li>
+        <li>
+          <details>
+            <summary>THEME</summary>
+            <li>this year's theme is <b>reflection</b></li>
+            <li>aka like a mirror</li>
+          </details>
+        </li>
       </ul>
     </div>
   );
