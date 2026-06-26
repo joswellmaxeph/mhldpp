@@ -18,21 +18,23 @@ function App() {
     const windowWidth = window.screen.availWidth;
     const windowHeight = window.screen.availHeight;
     const videoElement = document.querySelector("#bg video");
-    console.log("avail width", windowWidth);
-    console.log("window width", window.innerWidth);
-    console.log("window screen width", window.screen.width);
+    console.log("window width: ", windowWidth);
+    console.log("window height: ", windowHeight);
 
     if (videoElement) {
-      console.log("video width", videoElement.offsetWidth);
       const videoWidth = videoElement.offsetWidth;
       const videoHeight = videoElement.offsetHeight;
       const videoRatio = videoWidth / videoHeight;
       const windowRatio = windowWidth / windowHeight;
+      console.log("video width: ", videoWidth);
+      console.log("video height: ", videoHeight);
+      console.log("video ratio: ", videoRatio);
+      console.log("window ratio: ", windowRatio);
       if (videoRatio >= windowRatio) {
         videoElement.style.width = "";
-        videoElement.style.height = "100%";
+        videoElement.style.height = "105%";
       } else {
-        videoElement.style.width = "100%";
+        videoElement.style.width = "105%";
         videoElement.style.height = "";
       }
     }
