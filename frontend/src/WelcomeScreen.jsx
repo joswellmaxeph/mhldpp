@@ -12,10 +12,19 @@ function WelcomeScreen() {
   const [mainShowing, setMainShowing] = useState(false);
   const [addrShowing, setAddrShowing] = useState(false);
   const [dateShowing, setDateShowing] = useState(false);
+  const [windowsDone, setWindowsDone] = useState(false);
   const [reflectorShowing, setReflectorShowing] = useState(false);
   const [searchParams] = useSearchParams();
 
   const skip = searchParams.get("skip");
+
+  const showNormal = () => {
+    setSoonShowing(false);
+    localStorage.setItem("previouslyVisited", "true");
+    setMainShowing(true);
+    setTimeout(() => setWindowsDone(true), 1000);
+    setTimeout(() => setReflectorShowing(true), 2000);
+  };
 
   useEffect(() => {
     if (skip) {
@@ -28,7 +37,7 @@ function WelcomeScreen() {
 
   return (
     <div className="welcome-container">
-      {!skip && <OkWindow
+      {!skip && !windowsDone && !reflectorShowing &&<OkWindow
         showing={begunShowing}
         text="Summer has begun..."
         quote={`it is ${format(new Date(), "EEEE, MMMM do")}`}
@@ -38,12 +47,12 @@ function WelcomeScreen() {
           setSoonShowing(true);
         }}
       />}
-      {!skip &&<OkWindow
+      {!skip && !windowsDone && !reflectorShowing && <OkWindow
         showing={soonShowing}
         text="Soon it will end..."
         quote="all things end..."
         id="soon"
-        onClose={() => {setSoonShowing(false); localStorage.setItem("previouslyVisited", "true");setMainShowing(true);setTimeout(() => setReflectorShowing(true), 2000);}}
+        onClose={showNormal}
       />}
 
       <div className={`window ${mainShowing ? "showing" : ""}`} id="titles">
