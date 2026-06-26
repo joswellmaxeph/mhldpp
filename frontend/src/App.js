@@ -24,7 +24,7 @@ function App() {
     if (videoElement) {
       console.log("video width", videoElement.offsetWidth);
       if (windowWidth < videoElement.offsetWidth) {
-        videoElement.style.height = "100%";
+        videoElement.style.height = "105%";
         videoElement.style.width = "";
       } else {
         videoElement.style.width = "100%";
