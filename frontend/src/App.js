@@ -16,6 +16,7 @@ function App() {
 
   const onVidLoad = () => {
     const windowWidth = window.screen.availWidth;
+    const windowHeight = window.screen.availHeight;
     const videoElement = document.querySelector("#bg video");
     console.log("avail width", windowWidth);
     console.log("window width", window.innerWidth);
@@ -23,11 +24,16 @@ function App() {
 
     if (videoElement) {
       console.log("video width", videoElement.offsetWidth);
-      if (windowWidth < videoElement.offsetWidth) {
-        videoElement.style.height = "105%";
+      const videoWidth = videoElement.offsetWidth;
+      const videoHeight = videoElement.offsetHeight;
+      const videoRatio = videoWidth / videoHeight;
+      const windowRatio = windowWidth / windowHeight;
+      if (videoRatio >= windowRatio) {
         videoElement.style.width = "";
+        videoElement.style.height = "100%";
       } else {
         videoElement.style.width = "100%";
+        videoElement.style.height = "";
       }
     }
   }
