@@ -38,7 +38,7 @@ function App() {
   return (
     <div className="App">
       <div id="bg">
-        <video autoPlay playsInline loop muted controls onLoadedData={onVidLoad} onCanPlay={letsGo}>
+        <video autoPlay playsInline loop muted onLoadedData={onVidLoad} onCanPlay={letsGo}>
           <source src={sky} type="video/mp4" />
         </video>
       </div>
