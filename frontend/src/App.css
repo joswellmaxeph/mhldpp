@@ -445,3 +445,8 @@ ul.tree-view .sub-li {
 .loader {
     max-width: 300px;
 }
+
+video {
+    min-width: 100%;
+    min-height: 100%
+}
