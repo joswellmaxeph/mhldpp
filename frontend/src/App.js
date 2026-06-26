@@ -17,8 +17,12 @@ function App() {
   const onVidLoad = () => {
     const windowWidth = window.screen.availWidth;
     const videoElement = document.querySelector("#bg video");
+    console.log("avail width", windowWidth);
+    console.log("window width", window.innerWidth);
+    console.log("window screen width", window.screen.width);
 
     if (videoElement) {
+      console.log("video width", videoElement.offsetWidth);
       if (windowWidth < videoElement.offsetWidth) {
         videoElement.style.height = "100%";
         videoElement.style.width = "";
