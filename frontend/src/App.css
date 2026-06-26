@@ -2,6 +2,10 @@
     user-select: none;
 }
 
+html, body {
+    overflow: hidden;
+}
+
 body {
     background: #5382c0;
 }

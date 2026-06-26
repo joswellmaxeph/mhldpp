@@ -4,7 +4,10 @@ import "98.css";
 import "./App.css";
 import sky from "./sky2.mp4";
 
+import { useState } from "react";
+
 function App() {
+  const [videoSet, setVideoSet] = useState(false);
   const preFetch = async () => {
     try {
         await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/`);
@@ -14,6 +17,8 @@ function App() {
   }
 
   const onVidLoad = () => {
+    console.log(videoSet);
+    if (videoSet) return;
     const windowWidth = window.screen.availWidth;
     const windowHeight = window.screen.availHeight;
     const videoElement = document.querySelector("#bg video");
@@ -31,6 +36,7 @@ function App() {
         videoElement.style.height = "";
       }
     }
+    setVideoSet(true);
   }
 
   const letsGo = () => {
