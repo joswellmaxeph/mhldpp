@@ -14,12 +14,31 @@ function App() {
     }
   }
 
+  const onVidLoad = () => {
+    const windowWidth = window.screen.availWidth;
+    const videoElement = document.querySelector("#bg video");
+
+    if (videoElement) {
+      if (windowWidth < videoElement.offsetWidth) {
+        videoElement.style.height = "100%";
+        videoElement.style.width = "";
+      } else {
+        videoElement.style.width = "100%";
+      }
+    }
+  }
+
+  const letsGo = () => {
+    const videoElement = document.querySelector("#bg video");
+    videoElement.play();
+  };
+
   preFetch();
   
   return (
     <div className="App">
       <div id="bg">
-        <video autoPlay loop muted>
+        <video autoPlay loop muted onLoadedData={onVidLoad} onCanPlay={letsGo}>
           <source src={sky} type="video/mp4" />
         </video>
       </div>

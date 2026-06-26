@@ -7,18 +7,33 @@ const loadingMessages = [
   "Loading...",
   "Loading....",
   "Loading.....",
+  "Ok sorry.",
+  "Ok sorry..",
   "Ok sorry...",
+  "This is taking a long time.",
+  "This is taking a long time..",
   "This is taking a long time...",
+  "I didn't spring for the paid version.",
+  "I didn't spring for the paid version..",
   "I didn't spring for the paid version...",
+  "It just takes a while.",
+  "It just takes a while..",
   "It just takes a while...",
+  "But it's working on it.",
+  "But it's working on it..",
   "But it's working on it...",
+  "Actually, this is a feature.",
+  "Actually, this is a feature..",
   "Actually, this is a feature...",
+  "Take this time.",
+  "Take this time..",
   "Take this time...",
+  "Reflect on your life.",
+  "Reflect on your life..",
   "Reflect on your life...",
   "How are you doing?",
   "How have things been?",
   "Anything you want to do?",
-  "There is still time",
   "There is still time ܤ",
   "There is still time ܮ",
   "There is still time ֏",
@@ -70,7 +85,7 @@ function Loader({ loading }) {
         const nextIdx = (loadingTextIdx + 1) % loadingMessages.length;
         setLoadingTextIdx(nextIdx);
         setLoadingText(loadingMessages[nextIdx]);
-    }, 1000);
+    }, 500);
 
     return () => clearInterval(myInterval);
   }, [loading, loadingTextIdx]);

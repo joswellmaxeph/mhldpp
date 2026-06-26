@@ -1,16 +1,12 @@
-#bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    z-index: -1;
+* {
+    user-select: none;
 }
 
-#bg video {
-    min-width: 100%;
+video {
+    position: fixed;
+    z-index: -1;
+    top: 0;
+    left: 0;
 }
 
 #main-contain {
@@ -382,7 +378,7 @@ tr, td {
 }
 
 ul.tree-view {
-    background: rgba(255,255,255,.2);
+    background: rgba(255,255,255,.5);
     width: 100%;
     height: 90%;
     overflow-y: scroll;
@@ -396,4 +392,56 @@ ul.tree-view > li > details > summary {
 
 details {
     margin-bottom: 20px;
+}
+
+td {
+ max-width: 0;
+ overflow: hidden;
+ text-overflow: ellipsis;
+ white-space: nowrap;
+}
+
+ul.tree-view details > summary {
+    cursor: pointer;
+    font-size: 2em;
+    color: rgba(0, 0, 0, .7);
+}
+
+ul.tree-view > li {
+    margin-bottom: 30px;
+}
+
+ul.tree-view details > li {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+    letter-spacing: -.5px;
+}
+
+ul.tree-view details > li:nth-child(2) {
+    margin-top: 10px;
+}
+
+ul.tree-view details>summary:before {
+    display: none;
+}
+
+ul.tree-view details>summary:after {
+    content: "  +";
+}
+
+ul.tree-view details[open]>summary:after {
+    content: "  -";
+}
+ul.tree-view details li {
+    margin-left: 20px;
+}
+
+ul.tree-view .sub-li {
+    font-size: 1.5em;
+    margin-left: 40px;
+    font-style:italic
+}
+
+.loader {
+    max-width: 300px;
 }
