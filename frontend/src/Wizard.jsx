@@ -216,6 +216,7 @@ function Wizard({ title, questions, onSubmit }) {
       <div className="window-body">
         <p style={{ color: "red", fontSize: ".8em", fontStyle: "italic", height: "5px"}}>{qMessages[qMessageIdx]}</p>
         <p>{questions[currentQuestionIndex].text}</p>
+        <p style={{ fontStyle: "italic", fontSize: ".5em", margin: 0 }}>{questions[currentQuestionIndex].subtitle}</p>
         <GenericInput
           value={currentAnswer}
           type={questions[currentQuestionIndex].type}
