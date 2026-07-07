@@ -46,7 +46,7 @@ function InfoPage() {
             <li>We will have some drinks</li>
             <li>Please bring anything you'd like to share</li>
             <li>Or bring nothing, it is truly nbd</li>
-            <li>You can check the <a href="/rsvps">RSVPs</a> to see who is bringing things</li>
+            <li>You can check the <a href="/rsvps" style={{color: "blue", textDecoration: "underline"}}>RSVPs</a> to see who is bringing things</li>
           </details>
         </li>
         <li>
