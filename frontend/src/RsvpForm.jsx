@@ -8,7 +8,7 @@ const questions = [
   { name: "attending", text: "Will you attend?", type: "select", options: ["Yes", "No", "Maybe", "I don't know", "Can you repeat the question?"] },
   { name: "plusGuests", text: "Will you bring anyone else?", type: "textarea", cond: { attending: ["Yes", "Maybe", "I don't know"] } },
   { name: "email", text: "What is your email?", type: "email", cond: { attending: ["Yes", "Maybe", "I don't know"] } },
-  { name: "potluckBoolean", text: "Will you bring something for the potluck?", type: "select", options: ["Yes", "No", "Maybe"], cond: { attending: ["Yes", "Maybe", "I don't know"] } },
+  { name: "potluckBoolean", text: "Will you bring something for the potluck?", subtitle: "NOTE: Truly no worries if you don't bring anything!", type: "select", options: ["Yes", "No", "Maybe"], cond: { attending: ["Yes", "Maybe", "I don't know"] } },
   { name: "bringingForPotluck", text: "What will you bring for the potluck?", type: "textarea", cond: { potluckBoolean: ["Yes", "Maybe"] } },
   { name: "notes", text: "Anything else you'd like to share?", type: "textarea" },
 ];
