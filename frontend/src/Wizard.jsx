@@ -133,14 +133,14 @@ function Wizard({ title, questions, onSubmit }) {
       e.preventDefault();
       next();
     }
-  }
+  };
 
   useEffect(() => {
     document.addEventListener("keydown", keyDownHandler, false);
-    
+
     return () => {
       document.removeEventListener("keydown", keyDownHandler, false);
-    }
+    };
   }, [currentAnswer, currentQuestionIndex]);
 
   const helpClick = () => {
@@ -164,7 +164,7 @@ function Wizard({ title, questions, onSubmit }) {
       let nextQuestionIdx = currentQuestionIndex + 1;
       let nextQuestion = questions[nextQuestionIdx];
       setCurrentAnswer(newAnswers[nextQuestion?.name] || "");
-      
+
       let findingNext = true;
       while (findingNext) {
         let skip = false;
@@ -184,7 +184,7 @@ function Wizard({ title, questions, onSubmit }) {
           findingNext = false;
         }
       }
-      
+
       setCurrentQuestionIndex(nextQuestionIdx);
     } else {
       const newAnswers = { ...answers };
@@ -197,10 +197,39 @@ function Wizard({ title, questions, onSubmit }) {
 
   const prev = (e) => {
     setQMessageIdx(0);
-    if (currentQuestionIndex > 0) {
-      setCurrentQuestionIndex(currentQuestionIndex - 1);
-      setCurrentAnswer(answers[questions[currentQuestionIndex - 1].name] || "");
+    if (currentQuestionIndex <= 0) {
+      return;
     }
+
+    const newAnswers = { ...answers };
+    const newName = questions[currentQuestionIndex].name;
+    newAnswers[newName] = currentAnswer;
+    setAnswers(newAnswers);
+
+    let prevQuestionIdx = currentQuestionIndex - 1;
+    let prevQuestion = questions[prevQuestionIdx];
+    setCurrentAnswer(newAnswers[prevQuestion?.name] || "");
+    let findingPrev = true;
+    while (findingPrev) {
+      let skip = false;
+      if (prevQuestion.cond) {
+        for (const key in prevQuestion.cond) {
+          if (!prevQuestion.cond[key].includes(newAnswers[key])) {
+            skip = true;
+          }
+        }
+      }
+
+      if (skip) {
+        prevQuestionIdx--;
+        prevQuestion = questions[prevQuestionIdx];
+        setCurrentAnswer(newAnswers[prevQuestion?.name] || "");
+      } else {
+        findingPrev = false;
+      }
+    }
+
+    setCurrentQuestionIndex(prevQuestionIdx);
   };
 
   const lastQuestion = currentQuestionIndex === questions.length - 1;
@@ -214,9 +243,18 @@ function Wizard({ title, questions, onSubmit }) {
         </div>
       </div>
       <div className="window-body">
-        <p style={{ color: "red", fontSize: ".8em", fontStyle: "italic", height: "5px"}}>{qMessages[qMessageIdx]}</p>
-        <p style={{ marginBottom: 0 }}>{questions[currentQuestionIndex].text}</p>
-        <p style={{ fontStyle: "italic", fontSize: ".7em" }}>{questions[currentQuestionIndex].subtitle}</p>
+        <p
+          style={{
+            color: "red",
+            fontSize: ".8em",
+            fontStyle: "italic",
+            height: "5px",
+          }}
+        >
+          {qMessages[qMessageIdx]}
+        </p>
+        <p>{questions[currentQuestionIndex].text}</p>
+
         <GenericInput
           value={currentAnswer}
           type={questions[currentQuestionIndex].type}
@@ -225,11 +263,21 @@ function Wizard({ title, questions, onSubmit }) {
           }}
           options={questions[currentQuestionIndex].options}
         />
+        <p style={{ fontStyle: "italic", fontSize: ".7em", height: "2vh" }}>
+          {questions[currentQuestionIndex].subtitle}
+        </p>
         <div className="button-container">
-          <button onClick={prev} disabled={currentQuestionIndex === 0} style={{ opacity: currentQuestionIndex === 0 ? 0 : 1 }}>
+          <button
+            onClick={prev}
+            disabled={currentQuestionIndex === 0}
+            style={{ opacity: currentQuestionIndex === 0 ? 0 : 1 }}
+          >
             Back
           </button>
-          <button onClick={next} disabled={currentAnswer === "" && !lastQuestion}>
+          <button
+            onClick={next}
+            disabled={currentAnswer === "" && !lastQuestion}
+          >
             {lastQuestion ? "Submit" : "Next"}
           </button>
         </div>
@@ -239,4 +287,3 @@ function Wizard({ title, questions, onSubmit }) {
 }
 
 export default Wizard;
-
