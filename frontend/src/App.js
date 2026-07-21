@@ -2,7 +2,6 @@ import { Outlet } from "react-router-dom";
 import Footer from "./Footer";
 import "98.css";
 import "./App.css";
-import sky from "./sky2.mp4";
 
 import { useState } from "react";
 
@@ -50,7 +49,7 @@ function App() {
     <div className="App">
       <div id="bg">
         <video autoPlay playsInline loop muted onLoadedData={onVidLoad} onCanPlay={letsGo}>
-          <source src={sky} type="video/mp4" />
+          <source src="https://github.com/joswellmaxeph/mhldpp/raw/refs/heads/main/frontend/src/sky2.mp4" type="video/mp4" />
         </video>
       </div>
       <div id="main-contain">
