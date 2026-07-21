@@ -57,7 +57,7 @@ function RsvpForm() {
     <div className="rsvp-form">
       <Loader loading={loading} />
       {!loading && <Wizard title="RSVP" questions={questions} onSubmit={handleSubmit} />}
-      <Linky to="/rsvps" text="View all the RSVPs here" />
+      <Linky to="/rsvps" style={{fontSize: "2em", textShadow: "0 0 5px white"}} text=">View all the RSVPs here<" />
     </div>
     </>
   );
